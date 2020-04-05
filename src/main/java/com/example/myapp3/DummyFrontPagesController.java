@@ -107,12 +107,12 @@ public class DummyFrontPagesController {
         return result.isSuccess() ? "loginOk" : "operationError";
     }
 
-    @PostMapping("anoReview1A")
-    public String anoReview1A(@RequestParam("1") Boolean p1,
-                              @RequestParam("2") Boolean p2,
-                              @RequestParam("3") String p3,
-                              @RequestParam("4") String p4,
-                              @RequestParam("5") String p5) {
+    @PostMapping("sendAnonymousReviewE1")
+    public String sendAnonymousReviewE1(@RequestParam("areYouSatisfied") Boolean p1,
+                              @RequestParam("doYouWantSomeExtraPoints") Boolean p2,
+                              @RequestParam("whyDoYouWantToAchieveThem") String p3,
+                              @RequestParam("whatAreYouLookingFor") String p4,
+                              @RequestParam("whatIsYourHobby") String p5) {
         AnonymousReviewDataExample1 data = new AnonymousReviewDataExample1(p1, p2, p3, p4, p5);
         AnonymousReviewResponse result = putAnonymousReview.put(data, "Example1");
         return result.isSuccess() ? "loginOk" : "operationError";

@@ -1,7 +1,10 @@
 package com.example.myapp3;
 
 import javax.ws.rs.core.Response;
+import java.util.Base64;
+import java.util.UUID;
 
+import com.example.myapp3.anonymousreviews.AnonymousReviewData;
 import com.example.myapp3.anonymousreviews.AnonymousReviewDataExample1;
 import com.example.myapp3.anonymousreviews.AnonymousReviewResponse;
 import com.example.myapp3.anonymousreviews.PutAnonymousReview;
@@ -46,9 +49,48 @@ public class MyApi {
         this.putQuestionnaire = putQuestionnaire;
     }
 
-    @GetMapping("test")
-    public Response test() {
-        log.info("Test!");
+    @GetMapping("generateFake10000AccountReviewsAndQuestionnaires")
+    public Response generateFake10000Accounts() {
+        int i = 0;
+        while (i < 10000) {
+            String userName = UUID.randomUUID().toString();
+            String pass = Base64.getEncoder().encodeToString(userName.getBytes());
+            String email = userName + "@fakeemail.com";
+            String comment = "hello my name is: " + userName;
+
+            NewAccountData data = new NewAccountData(userName, pass, email, comment);
+            createAccount.create(data);
+
+            AnonymousReviewData reviewData = new AnonymousReviewDataExample1(i % 2 == 0,
+                                                                             i % 3 == 0,
+                                                                             "important for" + userName.substring(0, 4),
+                                                                             "looking for " + userName.substring(4, 8),
+                                                                             "hobby is " + userName.substring(8, 12));
+            putAnonymousReview.put(reviewData, "Example1");
+
+            QuestionnaireDataExample1 questionnaireDataExample1 = new QuestionnaireDataExample1(UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString(),
+                                                                                                UUID.randomUUID().toString());
+            putQuestionnaire.put(questionnaireDataExample1, userName, "https://dariusforoux.com/21-questions/");
+
+            i++;
+        }
+
         return Response.ok("OK!").build();
     }
 
