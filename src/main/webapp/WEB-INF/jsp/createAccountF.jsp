@@ -7,7 +7,7 @@
 <form method="post" action="createAccountA">
     Login: &nbsp;&nbsp;&nbsp;&nbsp;<input type="text" name="login"/>
     <br/><br>
-    Password: &nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password">
+    Password: &nbsp;&nbsp;&nbsp;&nbsp;<input type="password" name="password"/>
     <br/><br>
     Email: &nbsp;&nbsp;&nbsp;&nbsp;<input type="email" name="email">
     <br/><br>

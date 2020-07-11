@@ -85,6 +85,7 @@ public class DummyFrontPagesController {
                                   @RequestParam("17") String p17,
                                   @RequestParam("18") String p18,
                                   @RequestParam("login") String login) {
+        log.info("Kliknięte");
         QuestionnaireDataExample1 questionnaire = new QuestionnaireDataExample1(p1,
                                                                                 p2,
                                                                                 p3,
@@ -104,6 +105,7 @@ public class DummyFrontPagesController {
                                                                                 p17,
                                                                                 p18);
         QuestionnaireResponse result = putQuestionnaire.put(questionnaire, login, "https://dariusforoux.com/21-questions/");
+        log.info("Powinno nastąpić przekierowanie");
         return result.isSuccess() ? "loginOk" : "operationError";
     }
 
