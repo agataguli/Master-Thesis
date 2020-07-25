@@ -1,6 +1,7 @@
 package com.example.myapp3.anonymousreviews;
 
-import java.sql.Types;
+import static java.sql.Types.*;
+
 import java.util.UUID;
 
 import com.example.myapp3.util.JsonUtil;
@@ -19,16 +20,19 @@ public class DbPutAnonymousReview implements PutAnonymousReview {
         this.cache = cache;
     }
 
-    public AnonymousReviewResponse put(AnonymousReviewData anonymousReviewData, String reviewName) {
+    public AnonymousReviewResponse put(AnonymousReviewData data, String reviewName) {
         //language=TSQL
         try {
-            String query = "INSERT INTO anonymous_reviews(id, anonymous_reviews_details, data)"
-                + "VALUES (:id, :anonymous_reviews_details, :serialized_data)"
-                + ";";
+            String query =
+                "INSERT INTO anonymous_reviews(id, anonymous_reviews_details, data)"
+                    + "VALUES (:id, :anonymous_reviews_details, :serialized_data)";
 
-            MapSqlParameterSource params = new MapSqlParameterSource("id", UUID.randomUUID());
+            MapSqlParameterSource params =
+                new MapSqlParameterSource("id", UUID.randomUUID())
+                    .addValue("anonymous_reviews_details", reviewName)
+                    .addValue("serialized_data", JsonUtil.serialize(data), OTHER);
             params.addValue("anonymous_reviews_details", reviewName);
-            params.addValue("serialized_data", JsonUtil.serialize(anonymousReviewData), Types.OTHER);
+            params.addValue("serialized_data", JsonUtil.serialize(data), OTHER);
 
             cache.update(query, params);
 

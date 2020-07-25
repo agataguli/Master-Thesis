@@ -5,5 +5,4 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 public abstract class AnonymousReviewData {
-
 }

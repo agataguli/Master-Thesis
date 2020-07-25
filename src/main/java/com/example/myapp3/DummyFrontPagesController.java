@@ -66,25 +66,24 @@ public class DummyFrontPagesController {
     }
 
     @PostMapping("questionnaire1A")
-    public String questionnaire1A(@RequestParam("1") String p1,
-                                  @RequestParam("2") String p2,
-                                  @RequestParam("3") String p3,
-                                  @RequestParam("4") String p4,
-                                  @RequestParam("5") String p5,
-                                  @RequestParam("6") String p6,
-                                  @RequestParam("7") String p7,
-                                  @RequestParam("8") String p8,
-                                  @RequestParam("9") String p9,
-                                  @RequestParam("10") String p10,
-                                  @RequestParam("11") String p11,
-                                  @RequestParam("12") String p12,
-                                  @RequestParam("13") String p13,
-                                  @RequestParam("14") String p14,
-                                  @RequestParam("15") String p15,
-                                  @RequestParam("16") String p16,
-                                  @RequestParam("17") String p17,
-                                  @RequestParam("18") String p18,
-                                  @RequestParam("login") String login) {
+    public String questionnaire1A(@RequestParam("q1") String p1,
+                                  @RequestParam("q2") String p2,
+                                  @RequestParam("q3") String p3,
+                                  @RequestParam("q4") String p4,
+                                  @RequestParam("q5") String p5,
+                                  @RequestParam("q6") String p6,
+                                  @RequestParam("q7") String p7,
+                                  @RequestParam("q8") String p8,
+                                  @RequestParam("q9") String p9,
+                                  @RequestParam("q10") String p10,
+                                  @RequestParam("q11") String p11,
+                                  @RequestParam("q12") String p12,
+                                  @RequestParam("q13") String p13,
+                                  @RequestParam("q14") String p14,
+                                  @RequestParam("q15") String p15,
+                                  @RequestParam("q16") String p16,
+                                  @RequestParam("q17") String p17,
+                                  @RequestParam("q18") String p18) {
         log.info("Kliknięte");
         QuestionnaireDataExample1 questionnaire = new QuestionnaireDataExample1(p1,
                                                                                 p2,
@@ -104,7 +103,7 @@ public class DummyFrontPagesController {
                                                                                 p16,
                                                                                 p17,
                                                                                 p18);
-        QuestionnaireResponse result = putQuestionnaire.put(questionnaire, login, "https://dariusforoux.com/21-questions/");
+        QuestionnaireResponse result = putQuestionnaire.put(questionnaire, "login", "https://dariusforoux.com/21-questions/");
         log.info("Powinno nastąpić przekierowanie");
         return result.isSuccess() ? "loginOk" : "operationError";
     }

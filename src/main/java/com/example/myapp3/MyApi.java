@@ -30,6 +30,7 @@ import org.springframework.web.bind.annotation.*;
 @Component
 @RestController
 @RequestMapping("/")
+@AllArgsConstructor
 @Api("MY APP -  API")
 public class MyApi {
 
@@ -47,6 +48,17 @@ public class MyApi {
         this.createAccount = createAccount;
         this.putAnonymousReview = putAnonymousReview;
         this.putQuestionnaire = putQuestionnaire;
+    }
+
+    @PostMapping("putAnonymousReviewE1")
+    public Response putAnonymousReviewE1(@RequestBody AnonymousReviewDataExample1 data) {
+        log.info("Putting review: " + data);
+        try {
+            AnonymousReviewResponse response = putAnonymousReview.put(data, "Example1");
+            return Response.ok(JsonUtil.serialize(response)).build();
+        } catch (Exception e) {
+            return error("unable to create account - server error");
+        }
     }
 
     @GetMapping("generateFake10000AccountReviewsAndQuestionnaires")
@@ -110,17 +122,6 @@ public class MyApi {
         log.info("Try of creating account with: " + newAccountData);
         try {
             NewAccountResponse response = createAccount.create(newAccountData);
-            return Response.ok(JsonUtil.serialize(response)).build();
-        } catch (Exception e) {
-            return error("unable to create account - server error");
-        }
-    }
-
-    @PostMapping("putAnonymousReviewE1")
-    public Response putAnonymousReviewE1(@RequestBody AnonymousReviewDataExample1 anonymousReview) {
-        log.info("Putting review: " + anonymousReview);
-        try {
-            AnonymousReviewResponse response = putAnonymousReview.put(anonymousReview, "Example1");
             return Response.ok(JsonUtil.serialize(response)).build();
         } catch (Exception e) {
             return error("unable to create account - server error");

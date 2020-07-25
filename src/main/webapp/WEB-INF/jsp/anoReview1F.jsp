@@ -16,7 +16,7 @@
     <br/><br>
     5. What is your hobby? <br><input type="text" name="whatIsYourHobby"/>
     <br/><br>
-    <input type="submit" value="Submit">
+    <input type="submit" value="Submit"/>
 </form>
 </body>
 </html>

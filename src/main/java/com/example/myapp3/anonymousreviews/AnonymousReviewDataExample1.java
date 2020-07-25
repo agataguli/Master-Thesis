@@ -11,13 +11,13 @@ import lombok.NoArgsConstructor;
 @Data
 public class AnonymousReviewDataExample1 extends AnonymousReviewData {
 
-    private boolean areYouSatisfied; //1
+    private boolean areYouSatisfied;
 
-    private boolean doYouWantSomeExtraPoint; //2
+    private boolean doYouWantSomeExtraPoint;
 
-    private String whyYouShouldAchieveThem; //3
+    private String whyYouShouldAchieveThem;
 
-    private String whatAreYourLookingHere; //4
+    private String whatAreYourLookingHere;
 
-    private String whatIsYourHobby; //5
+    private String whatIsYourHobby;
 }
