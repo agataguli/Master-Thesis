@@ -42,14 +42,6 @@ public class MyApi {
 
     private final PutQuestionnaire putQuestionnaire;
 
-    public MyApi(AuthorizeUser authorizeUser, CreateAccount createAccount, PutAnonymousReview putAnonymousReview,
-                 PutQuestionnaire putQuestionnaire) {
-        this.authorizeUser = authorizeUser;
-        this.createAccount = createAccount;
-        this.putAnonymousReview = putAnonymousReview;
-        this.putQuestionnaire = putQuestionnaire;
-    }
-
     @PostMapping("putAnonymousReviewE1")
     public Response putAnonymousReviewE1(@RequestBody AnonymousReviewDataExample1 data) {
         log.info("Putting review: " + data);
